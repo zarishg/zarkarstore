@@ -45,7 +45,7 @@ h1 em{color:var(--terra-l)}
 .mini img{width:100%;mix-blend-mode:multiply}
 .m1{width:34%;aspect-ratio:1;top:0;right:-2%;animation-delay:-2s}
 .m2{width:30%;aspect-ratio:3/4;bottom:2%;left:-3%;animation-delay:-4s}
-.m2 img{width:150%;max-width:none}
+.m2 img{width:112%;max-width:none}
 .badge{position:absolute;right:-1%;bottom:8%;width:34%;animation:spin 26s linear infinite;color:var(--terra-l)}
 @keyframes flt{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @keyframes spin{to{transform:rotate(360deg)}}

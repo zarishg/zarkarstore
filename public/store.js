@@ -74,7 +74,7 @@ function waLink(text) { return S.cfg.whatsapp ? 'https://wa.me/' + S.cfg.whatsap
 /* ---------- views ---------- */
 function viewHome() {
   setTitle('');
-  var P = S.products, a = P[0] || {}, b = P[1] || a, c = P[2] || a;
+  var P = S.products, a = P[0] || {}, b = P[1] || a, c = P.filter(function (x) { return x.slug === 'n18'; })[0] || P[2] || a;
   var cats = ['blue', 'clay', 'kashi', 'cookware'].filter(function (k) { return P.some(function (x) { return x.category === k; }); });
   var accHtml = cats.slice(0, 4).map(function (k, i) {
     var p = P.filter(function (x) { return x.category === k; })[0];
