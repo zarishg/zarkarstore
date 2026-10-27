@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zarkar Studio · Hand-painted Pottery</title>
+<link rel="icon" type="image/png" href="/img/brand/favicon.png">
+<link rel="apple-touch-icon" href="/img/brand/seal-96.png">
+<meta name="description" content="Hand-painted blue pottery, clay pottery and kashi kari from Pakistan, shipped worldwide.">
+<meta name="theme-color" content="#060A26">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/store.css">
+</head>
+<body>
+<div class="ann" id="ann"></div>
+<header class="top">
+  <div class="wrap bar">
+    <a href="#/" class="logo brand" id="logo"><img src="/img/brand/seal-96.png" alt=""><span>Zarkar Studio</span></a>
+    <nav aria-label="Main">
+      <a href="#/shop">Shop</a>
+      <a href="#/collections">Collections</a>
+      <a href="#/workshop">Our workshop</a>
+      <a href="#/about">About</a>
+      <a href="#/contact">Contact</a>
+      <a href="#/track">Track order</a>
+    </nav>
+    <div class="tools">
+      <label for="cur" class="sr">Currency</label>
+      <select id="cur"></select>
+      <button class="cartbtn" id="openCart" type="button">Bag (<span id="cc">0</span>)</button>
+    </div>
+  </div>
+</header>
+<main id="app"></main>
+<footer class="foot" id="foot"></footer>
+
+<div id="veil"></div>
+<aside id="drawer" aria-label="Shopping bag">
+  <div class="dh"><h2>Your bag</h2><button type="button" class="x" id="closeCart" aria-label="Close bag">Close</button></div>
+  <div id="dlist"></div>
+  <div class="dtot"><span>Subtotal</span><b id="dsub"></b></div>
+  <p class="dnote">Shipping is calculated at checkout.</p>
+  <a class="btn p block" href="#/checkout" id="toCheckout">Checkout</a>
+</aside>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="/store.js"></script>
+</body>
+</html>

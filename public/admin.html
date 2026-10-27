@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Store Admin</title>
+<link rel="icon" type="image/png" href="/img/brand/favicon.png">
+<link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+<div id="login" class="center" hidden>
+  <form id="lf" class="card narrow">
+    <h1>Store admin</h1>
+    <label for="pw">Password</label>
+    <input id="pw" type="password" autocomplete="current-password" required>
+    <div id="lerr" class="err" hidden></div>
+    <button class="btn" type="submit">Sign in</button>
+  </form>
+</div>
+<div id="main" hidden>
+  <header class="bar">
+    <b>Store admin</b>
+    <nav id="tabs">
+      <button data-t="orders" class="on">Orders</button>
+      <button data-t="products">Products</button>
+      <button data-t="pages">Pages</button>
+      <button data-t="inquiries">Messages</button>
+      <button data-t="settings">Settings</button>
+    </nav>
+    <span class="sp"></span>
+    <a href="/" target="_blank" rel="noopener">View store</a>
+    <button id="logout" class="ghost">Sign out</button>
+  </header>
+  <div id="warn"></div>
+  <main id="view"></main>
+</div>
+<div id="toast" role="status"></div>
+<script src="/admin.js"></script>
+</body>
+</html>
