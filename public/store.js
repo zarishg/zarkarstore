@@ -78,6 +78,7 @@ function viewHome() {
   var cats = ['blue', 'clay', 'kashi', 'cookware'].filter(function (k) { return P.some(function (x) { return x.category === k; }); });
   var accHtml = cats.slice(0, 4).map(function (k, i) {
     var p = P.filter(function (x) { return x.category === k; })[0];
+    if (k === 'blue') { p = P.filter(function (x) { return x.slug === 'n14'; })[0] || p; }
     return '<a href="#/shop?cat=' + esc(k) + '" class="pan' + (i === 0 ? ' on' : '') + '" data-acc><img src="' + esc(img(p)) + '" alt="' + esc(p.name) + '"><span class="cap"><b>' + esc(catName(k)) + '</b><span>' + esc((CATS[k] && CATS[k][1]) || 'Hand-painted pieces.') + '</span></span></a>';
   }).join('');
   var mq = ['Blue pottery', 'Clay pottery', 'Kashi kari', 'Made to order', 'Ships worldwide'].map(function (t) { return '<span>✦</span>' + t; }).join('');
