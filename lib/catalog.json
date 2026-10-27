@@ -1176,5 +1176,29 @@
   "active": 1,
   "img_w": "/img/w/n21.jpg",
   "ensure": 1
+ },
+ {
+  "slug": "n22",
+  "name": "Lidded Floral Jar",
+  "category": "blue",
+  "desc": "Hand-painted blue pottery jar with a fitted domed lid, decorated with a cobalt, turquoise and white floral design. A decorative or storage piece.",
+  "price": 0,
+  "weight": 1000,
+  "img": "/img/p/n22.jpg",
+  "active": 1,
+  "img_w": "/img/w/n22.jpg",
+  "ensure": 1
+ },
+ {
+  "slug": "n23",
+  "name": "Cobalt Flower Matki",
+  "category": "blue",
+  "desc": "Round hand-painted blue pottery matki with a flared white-glazed rim and bold white flowers on a deep cobalt ground.",
+  "price": 0,
+  "weight": 1500,
+  "img": "/img/p/n23.jpg",
+  "active": 1,
+  "img_w": "/img/w/n23.jpg",
+  "ensure": 1
  }
 ]

@@ -81,8 +81,8 @@ function viewHome() {
     if (k === 'blue') { p = P.filter(function (x) { return x.slug === 'n14'; })[0] || p; }
     return '<a href="#/shop?cat=' + esc(k) + '" class="pan' + (i === 0 ? ' on' : '') + '" data-acc><img src="' + esc(img(p)) + '" alt="' + esc(p.name) + '"><span class="cap"><b>' + esc(catName(k)) + '</b><span>' + esc((CATS[k] && CATS[k][1]) || 'Hand-painted pieces.') + '</span></span></a>';
   }).join('');
-  var pinned = ['n19', 'n20', 'n21'].map(function (sl) { return P.filter(function (x) { return x.slug === sl; })[0]; }).filter(Boolean);
-  var gridPicks = pinned.length === 3 ? pinned.concat(P.slice(3).filter(function (x) { return pinned.indexOf(x) < 0; })).slice(0, 6) : P.slice(0, 6);
+  var gridPicks = ['n19', 'n20', 'n21', 'p18', 'n22', 'n23'].map(function (sl) { return P.filter(function (x) { return x.slug === sl; })[0]; }).filter(Boolean);
+  if (gridPicks.length < 6) gridPicks = P.slice(0, 6);
   var mq = ['Blue pottery', 'Clay pottery', 'Kashi kari', 'Made to order', 'Ships worldwide'].map(function (t) { return '<span>✦</span>' + t; }).join('');
   app.innerHTML =
   '<section class="hero" data-hero><div class="glow"></div><div class="wrap"><div>' +
