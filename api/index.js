@@ -1,6 +1,7 @@
 'use strict';
 // Zarkar Studio store API for Vercel (one Express app, PostgreSQL database).
 const crypto = require('crypto');
+const path = require('path');
 const express = require('express');
 const multer = require('multer');
 const { q, tx, NOW, getSettings, setSetting, ready, DEFAULT_PAGES, hasDb } = require('../lib/db');
@@ -20,6 +21,29 @@ const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', true);
 const h = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
+
+/* ---------- hidden admin: the admin pages and admin API only exist for someone who knows the private link ---------- */
+const ADMIN_KEY = process.env.ADMIN_KEY || '';
+const GATE_TOKEN = crypto.createHmac('sha256', SECRET).update('admin-gate|' + ADMIN_KEY).digest('hex');
+const ADMIN_DIR = path.join(__dirname, '..', 'lib', 'admin');
+app.use(['/admin', '/admin.html', '/admin.js', '/admin.css', '/api/admin'], (req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store');
+  res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+  const deny = () => res.status(404).type('text/plain').send('Not found');
+  if (!ADMIN_KEY) return deny(); // no key configured: admin stays hidden from everyone
+  const same = (a, b) => crypto.timingSafeEqual(hash(a), hash(b));
+  const given = typeof req.query.key === 'string' ? req.query.key : '';
+  if (given && same(given, ADMIN_KEY)) {
+    res.setHeader('Set-Cookie', `adm_gate=${GATE_TOKEN}; HttpOnly; SameSite=Strict; Path=/; Max-Age=31536000${isHttps(req) ? '; Secure' : ''}`);
+    if (req.method === 'GET' && req.baseUrl === '/admin') return res.redirect('/admin');
+    return next();
+  }
+  if (same(String(cookies(req).adm_gate || ''), GATE_TOKEN)) return next();
+  deny();
+});
+for (const f of ['admin', 'admin.html']) app.get('/' + f, (req, res) => res.sendFile('admin.html', { root: ADMIN_DIR }));
+app.get('/admin.js', (req, res) => res.sendFile('admin.js', { root: ADMIN_DIR }));
+app.get('/admin.css', (req, res) => res.sendFile('admin.css', { root: ADMIN_DIR }));
 
 /* ---------- database must be ready (tables created, first-run data added) ---------- */
 app.use(async (req, res, next) => {
