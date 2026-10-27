@@ -81,6 +81,8 @@ function viewHome() {
     if (k === 'blue') { p = P.filter(function (x) { return x.slug === 'n14'; })[0] || p; }
     return '<a href="#/shop?cat=' + esc(k) + '" class="pan' + (i === 0 ? ' on' : '') + '" data-acc><img src="' + esc(img(p)) + '" alt="' + esc(p.name) + '"><span class="cap"><b>' + esc(catName(k)) + '</b><span>' + esc((CATS[k] && CATS[k][1]) || 'Hand-painted pieces.') + '</span></span></a>';
   }).join('');
+  var pinned = ['n19', 'n20', 'n21'].map(function (sl) { return P.filter(function (x) { return x.slug === sl; })[0]; }).filter(Boolean);
+  var gridPicks = pinned.length === 3 ? pinned.concat(P.slice(3).filter(function (x) { return pinned.indexOf(x) < 0; })).slice(0, 6) : P.slice(0, 6);
   var mq = ['Blue pottery', 'Clay pottery', 'Kashi kari', 'Made to order', 'Ships worldwide'].map(function (t) { return '<span>✦</span>' + t; }).join('');
   app.innerHTML =
   '<section class="hero" data-hero><div class="glow"></div><div class="wrap"><div>' +
@@ -97,7 +99,7 @@ function viewHome() {
   '<div class="mq" aria-hidden="true"><div>' + mq + mq + mq + mq + '</div></div>' +
   '<section class="s" id="col"><div class="wrap"><h2 class="disp">Four traditions.</h2><p class="sub">Move over a panel to open it, then choose it to see the pieces.</p><div class="acc">' + accHtml + '</div></div></section>' +
   '<section class="s" style="padding-top:20px"><div class="wrap"><h2 class="disp">The collection</h2><p class="sub">Every piece is signed by the hand that painted it.</p>' +
-    '<div class="grid">' + P.slice(0, 6).map(card).join('') + '</div>' +
+    '<div class="grid">' + gridPicks.map(card).join('') + '</div>' +
     '<p style="margin-top:36px"><a class="btn o" href="#/shop">View all pieces</a></p></div></section>' +
   '<section class="s" style="background:var(--bg2)"><div class="wrap"><h2 class="disp">Shaped. Painted. Fired.</h2><p class="sub">The three steps every piece goes through, in this order.</p>' +
     '<div class="steps"><div><b>Shaped</b>The clay is cleaned, mixed and rested until it is ready to work. We then shape every piece by hand on our own wheel, and dry it slowly and evenly so it does not crack.</div><div><b>Painted</b>Our own artisans paint each piece by hand, freehand, with fine brushes: cobalt blue florals on blue pottery, and birds and flowers in colour on kashi kari. No stickers, no transfers.</div><div><b>Fired</b>Each piece is fired in our own kiln. It is painted, coated with a clear glaze and fired again, so the colour fuses into the clay and the surface turns glossy and strong. Our blue pottery is food safe.</div></div></div></section>' +

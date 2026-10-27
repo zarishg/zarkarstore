@@ -1059,7 +1059,7 @@
   "slug": "n12",
   "name": "Turquoise Four-Tier Fountain",
   "category": "clay",
-  "desc": "Glazed four-tier ceramic water fountain in turquoise, with scalloped bowls and cascading water. Size: 36 \u00d7 24 inches (height \u00d7 width).",
+  "desc": "Glazed four-tier ceramic water fountain in turquoise, with scalloped bowls and cascading water. Size: 36 × 24 inches (height × width).",
   "price": 5000,
   "weight": 25000,
   "img": "/img/p/n12.jpg",
@@ -1140,5 +1140,41 @@
   "img": "/img/p/n18.jpg",
   "active": 1,
   "img_w": "/img/w/n18.jpg"
+ },
+ {
+  "slug": "n19",
+  "name": "Floral Serving Tray",
+  "category": "blue",
+  "desc": "Large rectangular hand-painted blue pottery tray with a bold white floral design on a bright cobalt ground and a leaf border.",
+  "price": 0,
+  "weight": 1500,
+  "img": "/img/p/n19.jpg",
+  "active": 1,
+  "img_w": "/img/w/n19.jpg",
+  "ensure": 1
+ },
+ {
+  "slug": "n20",
+  "name": "Floral Teapot",
+  "category": "blue",
+  "desc": "Hand-painted blue pottery teapot with a domed lid, long spout and handle, decorated with cobalt and turquoise blossoms and one orange flower.",
+  "price": 0,
+  "weight": 1200,
+  "img": "/img/p/n20.jpg",
+  "active": 1,
+  "img_w": "/img/w/n20.jpg",
+  "ensure": 1
+ },
+ {
+  "slug": "n21",
+  "name": "Leaf Serving Bowl",
+  "category": "blue",
+  "desc": "Wide hand-painted blue pottery serving bowl with a glossy cream glaze, cobalt rim and a flowing leaf design.",
+  "price": 0,
+  "weight": 2000,
+  "img": "/img/p/n21.jpg",
+  "active": 1,
+  "img_w": "/img/w/n21.jpg",
+  "ensure": 1
  }
 ]
