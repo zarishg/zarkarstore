@@ -36,7 +36,7 @@
     },
     {
       "source": "/((?!api/|admin|uploads/|img/|sitemap\\.xml|robots\\.txt)[^.]*)",
-      "destination": "/index.html"
+      "destination": "/"
     }
   ],
   "headers": [
