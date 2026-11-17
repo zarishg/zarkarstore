@@ -1059,7 +1059,7 @@
   "slug": "n12",
   "name": "Turquoise Four-Tier Fountain",
   "category": "clay",
-  "desc": "Glazed four-tier ceramic water fountain in turquoise, with scalloped bowls and cascading water. Size: 36 \u00d7 24 inches (height \u00d7 width).",
+  "desc": "Glazed four-tier ceramic water fountain in turquoise, with scalloped bowls and cascading water. Size: 36 × 24 inches (height × width).",
   "price": 5000,
   "weight": 25000,
   "img": "/img/p/n12.jpg",
@@ -1271,6 +1271,18 @@
   "img": "/img/p/n29.jpg",
   "active": 1,
   "img_w": "/img/w/n29.jpg",
+  "ensure": 1
+ },
+ {
+  "slug": "n30",
+  "name": "Floral Pedestal Bird Bath",
+  "category": "blue",
+  "desc": "Hand-painted blue pottery bird bath on a pedestal, with a wide flared bowl in cobalt and turquoise glaze, white and yellow flowers and a petal-border base. Size: 14 x 15 in.",
+  "price": 0,
+  "weight": 3500,
+  "img": "/img/p/n30.jpg",
+  "active": 1,
+  "img_w": "/img/w/n30.jpg",
   "ensure": 1
  }
 ]
