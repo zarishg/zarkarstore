@@ -10,5 +10,17 @@
     "slug": "p16",
     "price_pkr": 3000,
     "size": "9 x 16 in"
+  },
+  {
+    "id": "2026-11-17-p06-plus500",
+    "slug": "p06",
+    "price_pkr": 1100,
+    "size": ""
+  },
+  {
+    "id": "2026-11-17-p16-plus500",
+    "slug": "p16",
+    "price_pkr": 3500,
+    "size": ""
   }
 ]
