@@ -25,6 +25,18 @@
     {
       "source": "/uploads/:name",
       "destination": "/api"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/api"
+    },
+    {
+      "source": "/:path((?!api|admin|uploads|img|sitemap|robots)[^.]*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [

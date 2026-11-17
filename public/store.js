@@ -44,7 +44,7 @@ function setQty(id, d) {
   var it = S.cart.filter(function (i) { return i.id === id; })[0]; if (!it) return;
   var p = prod(id); it.qty = Math.max(0, Math.min(p ? p.stock : 0, it.qty + d));
   S.cart = S.cart.filter(function (i) { return i.qty > 0; }); save('cart', S.cart); renderCart();
-  if (location.hash.indexOf('#/checkout') === 0) refreshQuote();
+  if (location.pathname.indexOf('/checkout') === 0) refreshQuote();
 }
 function renderCart() {
   S.cart = S.cart.filter(function (i) { return prod(i.id); });
@@ -64,9 +64,9 @@ function openCart(o) { $('#drawer').classList.toggle('on', o); $('#veil').classL
 /* ---------- shared bits ---------- */
 function card(p) {
   return '<article class="card"><div class="pan">' + (p.stock < 1 ? '<span class="soldout">Sold out</span>' : '') +
-    '<a class="il" href="#/p/' + esc(p.slug) + '" aria-label="' + esc(p.name) + '"><img src="' + esc(img(p)) + '" alt="' + esc(p.name) + '" loading="lazy"></a>' +
+    '<a class="il" href="/p/' + esc(p.slug) + '" aria-label="' + esc(p.name) + '"><img src="' + esc(img(p)) + '" alt="' + esc(p.name) + '" loading="lazy"></a>' +
     (p.stock > 0 && p.price_pkr > 0 ? '<button class="qa" type="button" data-add="' + p.id + '">Quick add</button>' : '') + '</div>' +
-    '<div class="meta"><div><small>' + esc(catName(p.category)) + '</small><a href="#/p/' + esc(p.slug) + '"><b>' + esc(p.name) + '</b></a></div><span>' + (p.price_pkr > 0 ? money(p.price_pkr) : 'Price coming soon') + '</span></div></article>';
+    '<div class="meta"><div><small>' + esc(catName(p.category)) + '</small><a href="/p/' + esc(p.slug) + '"><b>' + esc(p.name) + '</b></a></div><span>' + (p.price_pkr > 0 ? money(p.price_pkr) : 'Price coming soon') + '</span></div></article>';
 }
 function setTitle(t) { document.title = (t ? t + ' · ' : '') + S.cfg.brandName; }
 function waLink(text) { return S.cfg.whatsapp ? 'https://wa.me/' + S.cfg.whatsapp + '?text=' + encodeURIComponent(text) : ''; }
@@ -79,7 +79,7 @@ function viewHome() {
   var accHtml = cats.slice(0, 4).map(function (k, i) {
     var p = P.filter(function (x) { return x.category === k; })[0];
     if (k === 'blue') { p = P.filter(function (x) { return x.slug === 'n14'; })[0] || p; }
-    return '<a href="#/shop?cat=' + esc(k) + '" class="pan' + (i === 0 ? ' on' : '') + '" data-acc><img src="' + esc(img(p)) + '" alt="' + esc(p.name) + '"><span class="cap"><b>' + esc(catName(k)) + '</b><span>' + esc((CATS[k] && CATS[k][1]) || 'Hand-painted pieces.') + '</span></span></a>';
+    return '<a href="/shop?cat=' + esc(k) + '" class="pan' + (i === 0 ? ' on' : '') + '" data-acc><img src="' + esc(img(p)) + '" alt="' + esc(p.name) + '"><span class="cap"><b>' + esc(catName(k)) + '</b><span>' + esc((CATS[k] && CATS[k][1]) || 'Hand-painted pieces.') + '</span></span></a>';
   }).join('');
   var gridPicks = ['n19', 'n20', 'n21', 'p18', 'n22', 'n23'].map(function (sl) { return P.filter(function (x) { return x.slug === sl; })[0]; }).filter(Boolean);
   if (gridPicks.length < 6) gridPicks = P.slice(0, 6);
@@ -89,18 +89,18 @@ function viewHome() {
     '<div class="eyebrow">Hand-painted · Multan to the world</div>' +
     '<h1 class="disp">Blue that <em>glows.</em><br>Clay that remembers.</h1>' +
     '<p class="lead">Collector-grade pottery, painted stroke by stroke. Made for the tables you want to be remembered for.</p>' +
-    '<a href="#/shop" class="btn p">Shop the collection</a> <a href="#col" class="btn o" data-scroll="col">Explore</a></div>' +
+    '<a href="/shop" class="btn p">Shop the collection</a> <a href="#col" class="btn o" data-scroll="col">Explore</a></div>' +
     '<div class="stage">' +
-      '<div class="dep" data-depth="-14"><a href="#/p/' + esc(a.slug) + '" class="disc pan"><img src="' + esc(img(a)) + '" alt="' + esc(a.name) + '"></a></div>' +
-      '<div class="dep" data-depth="26"><a href="#/p/' + esc(b.slug) + '" class="mini m1 pan"><img src="' + esc(img(b)) + '" alt="' + esc(b.name) + '"></a></div>' +
-      '<div class="dep" data-depth="34"><a href="#/p/' + esc(c.slug) + '" class="mini m2 pan"><img src="' + esc(img(c)) + '" alt="' + esc(c.name) + '"></a></div>' +
+      '<div class="dep" data-depth="-14"><a href="/p/' + esc(a.slug) + '" class="disc pan"><img src="' + esc(img(a)) + '" alt="' + esc(a.name) + '"></a></div>' +
+      '<div class="dep" data-depth="26"><a href="/p/' + esc(b.slug) + '" class="mini m1 pan"><img src="' + esc(img(b)) + '" alt="' + esc(b.name) + '"></a></div>' +
+      '<div class="dep" data-depth="34"><a href="/p/' + esc(c.slug) + '" class="mini m2 pan"><img src="' + esc(img(c)) + '" alt="' + esc(c.name) + '"></a></div>' +
       '<div class="dep" data-depth="10"><svg class="badge" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="cp" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs><text font-size="17" letter-spacing="4" fill="currentColor" font-weight="600"><textPath href="#cp">HAND PAINTED · HAND GLAZED · HAND FIRED ·</textPath></text></svg></div>' +
     '</div></div></section>' +
   '<div class="mq" aria-hidden="true"><div>' + mq + mq + mq + mq + '</div></div>' +
   '<section class="s" id="col"><div class="wrap"><h2 class="disp">Four traditions.</h2><p class="sub">Move over a panel to open it, then choose it to see the pieces.</p><div class="acc">' + accHtml + '</div></div></section>' +
   '<section class="s" style="padding-top:20px"><div class="wrap"><h2 class="disp">The collection</h2><p class="sub">Every piece is signed by the hand that painted it.</p>' +
     '<div class="grid">' + gridPicks.map(card).join('') + '</div>' +
-    '<p style="margin-top:36px"><a class="btn o" href="#/shop">View all pieces</a></p></div></section>' +
+    '<p style="margin-top:36px"><a class="btn o" href="/shop">View all pieces</a></p></div></section>' +
   '<section class="s" style="background:var(--bg2)"><div class="wrap"><h2 class="disp">Shaped. Painted. Fired.</h2><p class="sub">The three steps every piece goes through, in this order.</p>' +
     '<div class="steps"><div><b>Shaped</b>The clay is cleaned, mixed and rested until it is ready to work. We then shape every piece by hand on our own wheel, and dry it slowly and evenly so it does not crack.</div><div><b>Painted</b>Our own artisans paint each piece by hand, freehand, with fine brushes: cobalt blue florals on blue pottery, and birds and flowers in colour on kashi kari. No stickers, no transfers.</div><div><b>Fired</b>Each piece is fired in our own kiln. It is painted, coated with a clear glaze and fired again, so the colour fuses into the clay and the surface turns glossy and strong. Our blue pottery is food safe.</div></div></div></section>' +
   '<section class="seal-band"><div class="wrap"><img src="/img/brand/seal.png" alt="' + esc(S.cfg.brandName) + ' clay seal"><div><h2>' + esc(S.cfg.brandName) + '</h2><p>Every piece leaves our workshop pressed with this clay seal: a promise that it was shaped, painted and fired by hand. Artisanal soul, timeless craft.</p></div></div></section>' +
@@ -126,12 +126,12 @@ function viewShop(q) {
   setTitle('Shop');
   var cats = []; S.products.forEach(function (p) { var k = p.category === 'cookware' ? 'clay' : p.category; if (cats.indexOf(k) < 0) cats.push(k); });
   var chips = [['all', 'All']].concat(cats.map(function (c) { return [c, c === 'clay' ? 'Clay' : catName(c)]; })).map(function (c) {
-    return '<a href="#/shop' + (c[0] === 'all' ? '' : '?cat=' + esc(c[0])) + '" class="' + (cat === c[0] ? 'on' : '') + '">' + esc(c[1]) + '</a>';
+    return '<a href="/shop' + (c[0] === 'all' ? '' : '?cat=' + esc(c[0])) + '" class="' + (cat === c[0] ? 'on' : '') + '">' + esc(c[1]) + '</a>';
   }).join('');
   var subChips = '';
   if (cat === 'clay') {
     subChips = '<div class="chips sub">' + [['all', 'All clay'], ['pottery', 'Clay pottery'], ['cookware', 'Clay cookware']].map(function (c) {
-      return '<a href="#/shop?cat=clay' + (c[0] === 'all' ? '' : '&sub=' + c[0]) + '" class="' + (sub === c[0] ? 'on' : '') + '">' + c[1] + '</a>';
+      return '<a href="/shop?cat=clay' + (c[0] === 'all' ? '' : '&sub=' + c[0]) + '" class="' + (sub === c[0] ? 'on' : '') + '">' + c[1] + '</a>';
     }).join('') + '</div>';
   }
   var list = S.products.filter(function (p) {
@@ -145,13 +145,13 @@ function viewShop(q) {
 
 function viewProduct(slug) {
   var p = bySlug(slug);
-  if (!p) { app.innerHTML = '<div class="wrap page"><h2 class="disp">Piece not found</h2><p class="sub">It may have been sold or removed.</p><a class="btn p" href="#/shop">Back to the shop</a></div>'; return; }
+  if (!p) { app.innerHTML = '<div class="wrap page"><h2 class="disp">Piece not found</h2><p class="sub">It may have been sold or removed.</p><a class="btn p" href="/shop">Back to the shop</a></div>'; return; }
   setTitle(p.name);
   var start = p.images[1] || p.images[0];
   var thumbs = p.images.length > 1 ? '<div class="thumbs">' + p.images.map(function (im, i) { return '<button type="button" class="pan' + (im === start ? ' on' : '') + '" data-thumb="' + esc(im) + '" aria-label="Photo ' + (i + 1) + '"><img src="' + esc(im) + '" alt=""></button>'; }).join('') + '</div>' : '';
   var stock = p.stock < 1 ? '<span class="pill">Sold out</span>' : p.stock <= 2 ? '<span class="pill">Only ' + p.stock + ' left</span>' : '<span class="pill">In stock</span>';
   var wa = waLink('Hello, I would like to ask about: ' + p.name);
-  app.innerHTML = '<div class="wrap"><div class="crumb"><a href="#/shop">Shop</a> / <a href="#/shop?cat=' + esc(p.category) + '">' + esc(catName(p.category)) + '</a></div><div class="view">' +
+  app.innerHTML = '<div class="wrap"><div class="crumb"><a href="/shop">Shop</a> / <a href="/shop?cat=' + esc(p.category) + '">' + esc(catName(p.category)) + '</a></div><div class="view">' +
     '<div><div class="zoom pan' + (p.images[1] ? ' lux' : '') + '" id="zoom"><img id="zimg" src="' + esc(start) + '" alt="' + esc(p.name) + '"></div>' + thumbs + '</div>' +
     '<div><div class="eyebrow">' + esc(catName(p.category)) + '</div><h2 class="disp" style="margin-bottom:8px">' + esc(p.name) + '</h2><p class="pr">' + (p.price_pkr > 0 ? money(p.price_pkr) : 'Price coming soon') + '</p>' + stock +
     '<p class="sub" style="margin:18px 0 0">' + esc(p.description) + '</p>' +
@@ -171,7 +171,7 @@ function viewProduct(slug) {
 /* ---------- checkout ---------- */
 function viewCheckout() {
   setTitle('Checkout');
-  if (!S.cart.length) { app.innerHTML = '<div class="wrap page"><h2 class="disp">Your bag is empty</h2><p class="sub">Add a piece first, then come back to check out.</p><a class="btn p" href="#/shop">Shop the collection</a></div>'; return; }
+  if (!S.cart.length) { app.innerHTML = '<div class="wrap page"><h2 class="disp">Your bag is empty</h2><p class="sub">Add a piece first, then come back to check out.</p><a class="btn p" href="/shop">Shop the collection</a></div>'; return; }
   var opts = S.cfg.countries.map(function (c) { return '<option value="' + c[0] + '"' + (c[0] === S.country ? ' selected' : '') + '>' + esc(c[1]) + '</option>'; }).join('');
   app.innerHTML = '<div class="wrap page"><h2 class="disp">Checkout</h2><form id="coForm" class="co" novalidate><div>' +
     '<div class="box"><div class="fgrid">' +
@@ -225,7 +225,7 @@ function placeOrder(e) {
   .then(function (o) {
     S.cart = []; save('cart', S.cart); renderCart(); S.last = o;
     if (o.redirect) { location.href = o.redirect; return; }
-    location.hash = '#/done/' + o.code;
+    go('/done/' + o.code);
   }).catch(function (x) { err.innerHTML = '<div class="err">' + esc(x.message) + '</div>'; btn.disabled = false; btn.textContent = 'Place order'; });
 }
 function viewDone(code) {
@@ -236,7 +236,7 @@ function viewDone(code) {
     '<p class="sub">Your order code is <b style="color:var(--ink)">' + esc(code) + '</b>. Please keep it to track your order.</p>' +
     (o && o.instructions ? '<h3 class="disp" style="font-size:30px;margin:0 0 10px">Next step</h3><div class="mono">' + esc(o.instructions) + '</div>' : '') +
     (o && (o.method === 'bank' || o.method === 'jazzcash' || o.method === 'easypaisa' || o.method === 'paypal') ? '<p class="note" style="margin-top:14px">We confirm your order as soon as we see the payment.</p>' : '') +
-    '<p style="margin-top:30px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn p" href="#/track?code=' + esc(code) + '">Track this order</a>' +
+    '<p style="margin-top:30px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn p" href="/track?code=' + esc(code) + '">Track this order</a>' +
     (wa ? '<a class="btn o" target="_blank" rel="noopener" href="' + esc(wa) + '">Message us on WhatsApp</a>' : '') + '</p></div>';
 }
 
@@ -291,7 +291,7 @@ function viewWorkshop() {
     }).join('') + '</div></div></section>' +
   '<section class="seal-band"><div class="wrap"><img src="/img/brand/seal.png" alt="' + b + ' clay seal"><div><h2>The seal of the maker</h2><p>Each piece is pressed with our clay seal before it leaves the workshop. It means one thing: we made it.</p></div></div></section>' +
   '<section class="s"><div class="wrap" style="text-align:center"><h2 class="disp ws-h">Want something made for you?</h2><p class="sub" style="margin:0 auto 30px">Because we make everything ourselves, we can take custom sizes, colours and wholesale orders.</p>' +
-    '<a class="btn p" href="#/shop">Shop the collection</a> ' + (wa ? '<a class="btn o" href="' + esc(wa) + '" target="_blank" rel="noopener">Talk to us on WhatsApp</a>' : '') + '</div></section>';
+    '<a class="btn p" href="/shop">Shop the collection</a> ' + (wa ? '<a class="btn o" href="' + esc(wa) + '" target="_blank" rel="noopener">Talk to us on WhatsApp</a>' : '') + '</div></section>';
   $$('.ws-media').forEach(function (m) {
     var v = $('.ws-vid', m), im = $('.ws-photo', m), src = v && $('source', v);
     var rmV = function () { if (v && v.parentNode) v.remove(); }, rmI = function () { if (im && im.parentNode) im.remove(); };
@@ -306,7 +306,7 @@ function viewWorkshop() {
 function inline(t) {
   t = esc(t);
   t = t.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
-  t = t.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:|#\/)[^)\s]*)\)/g, function (m, a, u) { return '<a href="' + u + '"' + (u.charAt(0) === '#' ? '' : ' target="_blank" rel="noopener"') + '>' + a + '</a>'; });
+  t = t.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:|#\/)[^)\s]*)\)/g, function (m, a, u) { if (u.indexOf('#/') === 0) u = u.slice(1); return '<a href="' + u + '"' + (u.charAt(0) === '/' ? '' : ' target="_blank" rel="noopener"') + '>' + a + '</a>'; });
   return t;
 }
 function freeShipText() {
@@ -384,7 +384,7 @@ function viewPage(slug) {
     wireForm();
     window.scrollTo(0, 0);
   }).catch(function () {
-    app.innerHTML = '<div class="wrap page"><h2 class="disp">Page not found</h2><p class="sub">We could not find that page.</p><a class="btn p" href="#/shop">Back to the shop</a></div>';
+    app.innerHTML = '<div class="wrap page"><h2 class="disp">Page not found</h2><p class="sub">We could not find that page.</p><a class="btn p" href="/shop">Back to the shop</a></div>';
   });
 }
 function viewCollections() {
@@ -394,15 +394,16 @@ function viewCollections() {
     var list = S.products.filter(function (p) { return d[0] === 'clay' ? (p.category === 'clay' || p.category === 'cookware') : p.category === d[0]; });
     if (!list.length) return '';
     var shots = list.slice(0, 3).map(function (p) { return '<img src="' + esc(img(p)) + '" alt="" loading="lazy">'; }).join('');
-    return '<a class="ccol" href="#/shop?cat=' + d[0] + '"><div class="cshots">' + shots + '</div><div class="cinfo"><b class="disp">' + d[1] + '</b><span>' + esc(d[2]) + '</span><em>' + list.length + ' pieces</em></div></a>';
+    return '<a class="ccol" href="/shop?cat=' + d[0] + '"><div class="cshots">' + shots + '</div><div class="cinfo"><b class="disp">' + d[1] + '</b><span>' + esc(d[2]) + '</span><em>' + list.length + ' pieces</em></div></a>';
   }).join('');
   app.innerHTML = '<div class="wrap page"><div class="eyebrow">' + esc(S.cfg.brandName) + '</div><h1 class="disp ph">Collections</h1><p class="sub">Every piece is made by hand in our own workshop. Choose a collection to explore.</p><div class="ccols">' + cards + '</div>' +
-    '<p style="margin-top:40px"><a class="btn o" href="#/workshop">See how we make it</a></p></div>';
+    '<p style="margin-top:40px"><a class="btn o" href="/workshop">See how we make it</a></p></div>';
 }
 
 /* ---------- router ---------- */
+function go(u) { history.pushState(null, '', u); route(); }
 function route() {
-  var h = location.hash || '#/', parts = h.slice(2).split('?'), path = parts[0].split('/'), q = new URLSearchParams(parts[1] || '');
+  var path = location.pathname.replace(/^\/+|\/+$/g, '').split('/'), q = new URLSearchParams(location.search);
   openCart(false);
   var v = path[0];
   if (v === 'shop') viewShop(q);
@@ -415,7 +416,37 @@ function route() {
   else if (v === 'collections') viewCollections();
   else if (v && S.pages.some(function (p) { return p.slug === v; })) { viewPage(v); return; }
   else viewHome();
+  seo(v, path, q);
   window.scrollTo(0, 0);
+}
+function metaTag(attr, key, val) {
+  var m = document.head.querySelector('meta[' + attr + '="' + key + '"]');
+  if (!m) { m = document.createElement('meta'); m.setAttribute(attr, key); document.head.appendChild(m); }
+  m.setAttribute('content', val);
+}
+function seo(v, path, q) {
+  var origin = location.origin, canon = origin + location.pathname.replace(/\/+$/, '');
+  if (v === 'shop' && q.get('cat')) canon += '?cat=' + encodeURIComponent(q.get('cat'));
+  var l = document.head.querySelector('link[rel="canonical"]');
+  if (!l) { l = document.createElement('link'); l.rel = 'canonical'; document.head.appendChild(l); }
+  l.href = canon || origin;
+  var desc = 'Hand-painted blue pottery, clay pottery and kashi kari from Pakistan, shipped worldwide.';
+  var p = v === 'p' && bySlug(path[1]);
+  if (p) desc = (p.name + ' by ' + S.cfg.brandName + '. ' + (p.description || 'Handmade in our own workshop in Pakistan.')).replace(/\s+/g, ' ').slice(0, 300);
+  else if (v === 'shop') desc = 'Shop hand-painted blue pottery, kashi kari and clay cookware made by ' + S.cfg.brandName + ' in Pakistan. Worldwide shipping.';
+  else if (v === 'workshop' || v === 'story') desc = 'See how ' + S.cfg.brandName + ' makes every piece: our own wheel, our own hands and our own kiln in Pakistan.';
+  metaTag('name', 'description', desc);
+  var noidx = ['checkout', 'done', 'track', 'order'].indexOf(v) >= 0;
+  metaTag('name', 'robots', noidx ? 'noindex, follow' : 'index, follow');
+  metaTag('property', 'og:title', document.title); metaTag('property', 'og:description', desc);
+  metaTag('property', 'og:url', l.href); metaTag('property', 'og:type', p ? 'product' : 'website');
+  if (p && p.images && p.images[0]) metaTag('property', 'og:image', origin + p.images[0]);
+  var old = document.getElementById('ld'); if (old) old.remove();
+  if (p) {
+    var ld = { '@context': 'https://schema.org', '@type': 'Product', name: p.name, description: desc, image: (p.images || []).map(function (i) { return origin + i; }), brand: { '@type': 'Brand', name: S.cfg.brandName } };
+    if (p.price_pkr > 0) ld.offers = { '@type': 'Offer', priceCurrency: 'PKR', price: String(p.price_pkr), availability: p.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock', url: l.href };
+    var sc = document.createElement('script'); sc.type = 'application/ld+json'; sc.id = 'ld'; sc.textContent = JSON.stringify(ld); document.head.appendChild(sc);
+  }
 }
 
 /* ---------- events ---------- */
@@ -431,7 +462,16 @@ document.addEventListener('click', function (e) {
 });
 document.addEventListener('mouseover', function (e) { var a = e.target.closest && e.target.closest('[data-acc]'); if (a && !a.classList.contains('on')) $$('[data-acc]').forEach(function (x) { x.classList.toggle('on', x === a); }); });
 document.addEventListener('keydown', function (e) { if (e.key === 'Escape') openCart(false); });
-window.addEventListener('hashchange', route);
+window.addEventListener('popstate', route);
+document.addEventListener('click', function (e) {
+  if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  var a = e.target.closest && e.target.closest('a[href]');
+  if (!a || a.target || a.hasAttribute('download')) return;
+  var u = a.getAttribute('href');
+  if (u.charAt(0) !== '/' || u.charAt(1) === '/' || /^\/(admin|api|uploads|img)(\/|$)|\.[a-z0-9]+$/i.test(u.split('?')[0])) return;
+  e.preventDefault(); go(u);
+});
+if (location.hash.indexOf('#/') === 0) history.replaceState(null, '', location.hash.slice(1));
 
 /* ---------- boot ---------- */
 Promise.all([api('/api/config'), api('/api/products'), api('/api/pages').catch(function () { return []; })]).then(function (r) {
@@ -442,9 +482,9 @@ Promise.all([api('/api/config'), api('/api/products'), api('/api/pages').catch(f
   $('#cur').innerHTML = Object.keys(S.cfg.currencies).map(function (c) { return '<option' + (c === S.cur ? ' selected' : '') + '>' + c + '</option>'; }).join('');
   $('#cur').onchange = function () { S.cur = this.value; save('cur', S.cur); renderCart(); route(); };
   var f = $('#foot');
-  var foot = S.pages.filter(function (p) { return p.footer; }).map(function (p) { return '<a href="#/' + esc(p.slug) + '">' + esc(p.title) + '</a>'; }).join('');
+  var foot = S.pages.filter(function (p) { return p.footer; }).map(function (p) { return '<a href="/' + esc(p.slug) + '">' + esc(p.title) + '</a>'; }).join('');
   f.innerHTML = '<div class="wrap fgrid"><div><div class="fb"><img src="/img/brand/seal-96.png" alt=""><div class="logo" style="font-size:26px">' + esc(S.cfg.brandName) + '</div></div><p>Artisanal soul. Timeless craft.<br>Handmade in Pakistan.</p></div>' +
-    '<div><small>Shop</small><a href="#/shop">All pieces</a><a href="#/collections">Collections</a><a href="#/workshop">Our workshop</a><a href="#/track">Track order</a>' +
+    '<div><small>Shop</small><a href="/shop">All pieces</a><a href="/collections">Collections</a><a href="/workshop">Our workshop</a><a href="/track">Track order</a>' +
     (S.cfg.whatsapp ? '<a href="https://wa.me/' + esc(S.cfg.whatsapp) + '" target="_blank" rel="noopener">WhatsApp</a>' : '') + '</div>' +
     '<div><small>Help and information</small>' + foot + '</div></div><div class="wrap fcopy">© ' + new Date().getFullYear() + ' ' + esc(S.cfg.brandName) + '</div>';
   renderCart(); route();

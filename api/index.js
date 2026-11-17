@@ -122,6 +122,17 @@ app.get('/api/config', h(async (req, res) => {
 }));
 
 /* ---------- content pages (public read) and inquiry forms ---------- */
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain').send('User-agent: *\nDisallow: /admin\nDisallow: /api/\nDisallow: /checkout\nDisallow: /track\n\nSitemap: ' + BASE_URL + '/sitemap.xml\n');
+});
+app.get('/sitemap.xml', h(async (req, res) => {
+  const base = (req.headers['x-forwarded-host'] ? 'https://' + req.headers['x-forwarded-host'] : BASE_URL).replace(/\/$/, '');
+  const urls = ['/', '/shop', '/collections', '/workshop', '/shop?cat=blue', '/shop?cat=kashi', '/shop?cat=clay'];
+  (await q.all('SELECT slug FROM pages ORDER BY sort, title')).forEach(p => urls.push('/' + p.slug));
+  (await q.all('SELECT slug FROM products WHERE active=1 ORDER BY sort, id')).forEach(p => urls.push('/p/' + p.slug));
+  const esc = s => s.replace(/&/g, '&amp;');
+  res.type('application/xml').set('Cache-Control', 'public, max-age=0, s-maxage=3600').send('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls.map(u => '<url><loc>' + esc(base + u) + '</loc></url>').join('\n') + '\n</urlset>\n');
+}));
 app.get('/api/pages', h(async (req, res) => {
   res.json(await q.all('SELECT slug, title, footer FROM pages ORDER BY sort, title'));
 }));
