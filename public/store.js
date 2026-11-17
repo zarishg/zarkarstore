@@ -285,6 +285,11 @@ function viewWorkshop() {
     '<p class="sub">After slow drying, each piece goes into our own kiln. Painted and glazed pieces return to the fire so the colours fuse into the clay and the glaze turns glassy and deep.</p>' +
     '<p class="sub">Owning the kiln means we control the firing ourselves. We choose when a piece is ready, and we can stand behind how it is made.</p></div>' +
     wsMedia('kiln', 'Our kiln') + '</div></section>' +
+  '<section class="s"><div class="wrap"><div class="eyebrow">03 · Our stock</div><h2 class="disp ws-h">Ready pieces, waiting in our workshop.</h2>' +
+    '<p class="sub">A look at finished pieces stacked and shelved in our workshop, before they are packed and sent to you.</p>' +
+    '<div class="ws-stock">' + [['stock1','Finished diya platters stacked in our workshop'],['stock2','Rows of blue pottery vases in our workshop']].map(function (v) {
+      return '<div class="ws-sv"><video muted loop playsinline autoplay preload="metadata" aria-label="' + esc(v[1]) + '"><source src="/img/workshop/' + v[0] + '.mp4" type="video/mp4"></video></div>';
+    }).join('') + '</div></div></section>' +
   '<section class="s"><div class="wrap"><h2 class="disp ws-h">From clay to your home</h2><p class="sub">The six steps every piece goes through in our workshop.</p>' +
     '<div class="ws-steps">' + [['Clay prepared','Cleaned, mixed and rested until it is ready to work.'],['Thrown on the wheel','Shaped by hand on our own wheel.'],['Dried slowly','Dried gently and evenly so it does not crack.'],['Painted by hand','Motifs drawn freehand: blue florals, kashi kari birds and patterns.'],['Glazed','A clear, glossy glaze brings out the colour.'],['Fired in our kiln','Fired in our own kiln, then inspected before packing.']].map(function (s, i) {
       return '<div><i>' + (i + 1) + '</i><b>' + s[0] + '</b><span>' + s[1] + '</span></div>';
