@@ -1224,5 +1224,53 @@
   "active": 1,
   "img_w": "/img/w/n25.jpg",
   "ensure": 1
+ },
+ {
+  "slug": "n26",
+  "name": "Royal Blue Flared Vase",
+  "category": "blue",
+  "desc": "Hand-painted blue pottery vase with a flared neck, deep cobalt glaze and bold white, yellow and orange flowers.",
+  "price": 0,
+  "weight": 1800,
+  "img": "/img/p/n26.jpg",
+  "active": 1,
+  "img_w": "/img/w/n26.jpg",
+  "ensure": 1
+ },
+ {
+  "slug": "n27",
+  "name": "Blue Barrel Lidded Jar",
+  "category": "blue",
+  "desc": "Hand-painted blue pottery barrel-shaped jar with a fitted lid, painted with white leaves, yellow flowers and floral borders.",
+  "price": 0,
+  "weight": 2500,
+  "img": "/img/p/n27.jpg",
+  "active": 1,
+  "img_w": "/img/w/n27.jpg",
+  "ensure": 1
+ },
+ {
+  "slug": "n28",
+  "name": "Twin-Handle Lidded Urn",
+  "category": "blue",
+  "desc": "Tall hand-painted blue pottery urn with two handles and a pointed lid, decorated with turquoise arches, floral bands and gold-yellow flowers.",
+  "price": 0,
+  "weight": 3000,
+  "img": "/img/p/n28.jpg",
+  "active": 1,
+  "img_w": "/img/w/n28.jpg",
+  "ensure": 1
+ },
+ {
+  "slug": "n29",
+  "name": "Sky Blue Floral Lidded Jar",
+  "category": "blue",
+  "desc": "Hand-painted blue pottery lidded jar in light blue glaze, with cobalt leaves and white, yellow and orange flowers.",
+  "price": 0,
+  "weight": 2000,
+  "img": "/img/p/n29.jpg",
+  "active": 1,
+  "img_w": "/img/w/n29.jpg",
+  "ensure": 1
  }
 ]
