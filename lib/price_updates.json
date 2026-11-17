@@ -34,5 +34,19 @@
     "slug": "p16",
     "price_pkr": 3500,
     "size": ""
+  },
+  {
+    "id": "2026-11-17-p06-final",
+    "slug": "p06",
+    "price_pkr": 1000,
+    "size": "",
+    "name": "Blue Leaf Bowl"
+  },
+  {
+    "id": "2026-11-17-p16-final",
+    "slug": "p16",
+    "price_pkr": 3500,
+    "size": "",
+    "name": "Green Lattice Vase"
   }
 ]
