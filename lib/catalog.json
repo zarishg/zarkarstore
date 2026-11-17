@@ -1059,7 +1059,7 @@
   "slug": "n12",
   "name": "Turquoise Four-Tier Fountain",
   "category": "clay",
-  "desc": "Glazed four-tier ceramic water fountain in turquoise, with scalloped bowls and cascading water. Size: 36 × 24 inches (height × width).",
+  "desc": "Glazed four-tier ceramic water fountain in turquoise, with scalloped bowls and cascading water. Size: 36 \u00d7 24 inches (height \u00d7 width).",
   "price": 5000,
   "weight": 25000,
   "img": "/img/p/n12.jpg",
@@ -1199,6 +1199,30 @@
   "img": "/img/p/n23.jpg",
   "active": 1,
   "img_w": "/img/w/n23.jpg",
+  "ensure": 1
+ },
+ {
+  "slug": "n24",
+  "name": "Cream Floral Lidded Dish",
+  "category": "kashi",
+  "desc": "Hand-painted kashi kari lidded dish with a cream glaze, amber rim and a flowing vine of red flowers and green leaves.",
+  "price": 0,
+  "weight": 2000,
+  "img": "/img/p/n24.jpg",
+  "active": 1,
+  "img_w": "/img/w/n24.jpg",
+  "ensure": 1
+ },
+ {
+  "slug": "n25",
+  "name": "Emerald Floral Lidded Dish",
+  "category": "kashi",
+  "desc": "Hand-painted kashi kari lidded dish in deep green glaze, with raised gold borders and yellow and red flowers on the lid.",
+  "price": 0,
+  "weight": 2000,
+  "img": "/img/p/n25.jpg",
+  "active": 1,
+  "img_w": "/img/w/n25.jpg",
   "ensure": 1
  }
 ]
