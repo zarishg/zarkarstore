@@ -22,5 +22,17 @@
     "slug": "p16",
     "price_pkr": 3500,
     "size": ""
+  },
+  {
+    "id": "2026-11-17-p06-clean",
+    "slug": "p06",
+    "price_pkr": 1100,
+    "size": ""
+  },
+  {
+    "id": "2026-11-17-p16-clean",
+    "slug": "p16",
+    "price_pkr": 3500,
+    "size": ""
   }
 ]
