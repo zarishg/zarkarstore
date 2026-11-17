@@ -1059,7 +1059,7 @@
   "slug": "n12",
   "name": "Turquoise Four-Tier Fountain",
   "category": "clay",
-  "desc": "Glazed four-tier ceramic water fountain in turquoise, with scalloped bowls and cascading water. Size: 36 × 24 inches (height × width).",
+  "desc": "Glazed four-tier ceramic water fountain in turquoise, with scalloped bowls and cascading water. Size: 36 \u00d7 24 inches (height \u00d7 width).",
   "price": 5000,
   "weight": 25000,
   "img": "/img/p/n12.jpg",
@@ -1283,6 +1283,30 @@
   "img": "/img/p/n30.jpg",
   "active": 1,
   "img_w": "/img/w/n30.jpg",
+  "ensure": 1
+ },
+ {
+  "slug": "n31",
+  "name": "Golden Twin-Handle Vase",
+  "category": "blue",
+  "desc": "Hand-painted blue pottery vase with two yellow handles, a sunny yellow body with sky-blue and white flowers, and a turquoise and cobalt neck and base.",
+  "price": 0,
+  "weight": 3000,
+  "img": "/img/p/n31.jpg",
+  "active": 1,
+  "img_w": "/img/w/n31.jpg",
+  "ensure": 1
+ },
+ {
+  "slug": "n32",
+  "name": "Diya Centrepiece Platter",
+  "category": "clay",
+  "desc": "Hand-glazed earthenware platter with a raised centre bowl and four small diya cups, finished in green, red and brown on a cream glaze.",
+  "price": 0,
+  "weight": 2500,
+  "img": "/img/p/n32.jpg",
+  "active": 1,
+  "img_w": "/img/w/n32.jpg",
   "ensure": 1
  }
 ]
