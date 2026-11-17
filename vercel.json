@@ -35,7 +35,7 @@
       "destination": "/api"
     },
     {
-      "source": "/:path((?!api|admin|uploads|img|sitemap|robots)[^.]*)",
+      "source": "/((?!api/|admin|uploads/|img/|sitemap\\.xml|robots\\.txt)[^.]*)",
       "destination": "/index.html"
     }
   ],
